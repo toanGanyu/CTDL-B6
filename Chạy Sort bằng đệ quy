@@ -1,0 +1,28 @@
+using System;
+
+class Program
+{
+    static void SelectionSort(int[] arr, int start)
+    {
+        if (start >= arr.Length - 1)
+            return;
+
+        int minIndex = start;
+        for (int i = start + 1; i < arr.Length; i++)
+        {
+            if (arr[i] < arr[minIndex])
+                minIndex = i;
+        }
+
+        (arr[start], arr[minIndex]) = (arr[minIndex], arr[start]);
+
+        SelectionSort(arr, start + 1);
+    }
+
+    static void Main()
+    {
+        int[] arr = { 64, 25, 12, 22, 11 };
+        SelectionSort(arr, 0);
+        Console.WriteLine(string.Join(" ", arr));
+    }
+}
