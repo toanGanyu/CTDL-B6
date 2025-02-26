@@ -1,0 +1,75 @@
+using System;
+
+class Node
+{
+    public int data;
+    public Node next;
+    public Node prev;
+
+    public Node(int data)
+    {
+        this.data = data;
+        this.next = null;
+        this.prev = null;
+    }
+}
+
+class DoublyLinkedList
+{
+    private Node head;
+
+    public void ThemVaoDau(int data)
+    {
+        Node newNode = new Node(data);
+        if (head != null)
+        {
+            newNode.next = head;
+            head.prev = newNode;
+        }
+        head = newNode;
+    }
+
+    public void ThemVaoCuoi(int data)
+    {
+        Node newNode = new Node(data);
+        if (head == null)
+        {
+            head = newNode;
+            return;
+        }
+        Node temp = head;
+        while (temp.next != null)
+        {
+            temp = temp.next;
+        }
+        temp.next = newNode;
+        newNode.prev = temp;
+    }
+
+    public void XuatDanhSach()
+    {
+        Node temp = head;
+        while (temp != null)
+        {
+            Console.Write(temp.data + " <-> ");
+            temp = temp.next;
+        }
+        Console.WriteLine("null");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        DoublyLinkedList danhSach = new DoublyLinkedList();
+
+        danhSach.ThemVaoDau(10);
+        danhSach.ThemVaoDau(20);
+        danhSach.ThemVaoCuoi(30);
+        danhSach.ThemVaoCuoi(40);
+
+        Console.WriteLine("Danh sach lien ket kep:");
+        danhSach.XuatDanhSach();
+    }
+}
